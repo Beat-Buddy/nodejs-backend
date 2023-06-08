@@ -11,7 +11,7 @@ const CLIENT_SECRET = "7fe3fb3fb288461e8dd8949659f42971";
 //Access tokens are requested here, they are used for making the actual data calls to the Spotify API, f.e. requesting a song by an ID, they expire after an hour
 function updateAccessToken() {
   //Check if access token isn't expired yet
-  if (Date.now() >= ACCESS_TOKEN.expires) {
+  if (Date.now() >= ACCESS_TOKEN.expires || ACCESS_TOKEN.expires == undefined) {
     const data = new URLSearchParams();
     data.append("grant_type", "client_credentials");
     data.append("client_id", CLIENT_ID);
