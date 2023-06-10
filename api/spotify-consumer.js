@@ -1,6 +1,6 @@
 const axios = require("axios");
 const fs = require("fs");
-const ACCESS_TOKEN = require("./access-token");
+let access_token = require("./access-token");
 
 const SPOTIFY_API_URL = "https://api.spotify.com/v1";
 
@@ -11,7 +11,7 @@ const CLIENT_SECRET = "7fe3fb3fb288461e8dd8949659f42971";
 //Access tokens are requested here, they are used for making the actual data calls to the Spotify API, f.e. requesting a song by an ID, they expire after an hour
 function updateAccessToken() {
   //Check if access token isn't expired yet
-  if (Date.now() >= ACCESS_TOKEN.expires || ACCESS_TOKEN.expires == undefined) {
+  if (Date.now() >= access_token.expires || access_token.expires == undefined) {
     const data = new URLSearchParams();
     data.append("grant_type", "client_credentials");
     data.append("client_id", CLIENT_ID);
@@ -34,7 +34,10 @@ function updateAccessToken() {
           "module.exports=" + JSON.stringify(newAccessToken),
           (err) => {
             if (err) throw err;
-            console.log("Access token saved");
+            else {
+              console.log("Access token saved");
+              access_token = newAccessToken; //Save access token also in runtime variable so it can be used without restarting
+            }
           }
         );
       })
@@ -42,9 +45,7 @@ function updateAccessToken() {
         console.log(error.response);
       });
   } else {
-    console.log(
-      "Current access token is not expired yet and is still usable."
-    );
+    console.log("Current access token is not expired yet and is still usable.");
   }
 }
 
