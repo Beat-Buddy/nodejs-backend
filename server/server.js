@@ -6,6 +6,10 @@ const app = express();
 
 app.use(bodyParser.json());
 
+// POST-Endpoint to retrieve search-parameters from FE
+app.post("/search", (req, res) => {
+  const { searchParameter1, searchParameter2, searchParameter3 } = req.body;
+
 // Favorites list
 let favorites = [];
 
