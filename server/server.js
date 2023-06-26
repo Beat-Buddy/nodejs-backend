@@ -48,7 +48,6 @@ app.get("/favorites", (req, res) => {
 // Root route
 app.get("/", function (req, res) {
   res.send('This is the Node.js backend server of the "Beat Buddy" App.');
-  spotify.updateAccessToken();
 });
 
 app.listen(3000, () => {
