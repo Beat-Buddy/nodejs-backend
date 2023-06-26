@@ -6,22 +6,27 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// POST-Endpoint to retrieve search-parameters from FE
+// GET-Endpoint to retrieve search-parameters from FE
 app.get("/search", (req, res) => {
-  const { searchParameter1, searchParameter2, searchParameter3 } = req.body;
+  const { searchParameter1, searchParameter2, searchParameter3 } = req.query;
+
+  // Code to process the search parameters
+
+  res.status(200).json({ message: "Search completed" });
+});
 
 // Favorites list
 let favorites = [];
 
 // Add a song to favorites
-app.put("/favorites/:songId", (req, res) => {
-  const songId = req.params.songId;
+app.put("/favorites", (req, res) => {
+  const song = req.body;
 
-  if (favorites.includes(songId)) {
+  if (favorites.some(favorite => favorite.id === song.id)) {
     return res.status(400).json({ error: "Song already in favorites" });
   }
 
-  favorites.push(songId);
+  favorites.push(song);
 
   res.status(200).json({ message: "Song added to favorites" });
 });
@@ -30,7 +35,7 @@ app.put("/favorites/:songId", (req, res) => {
 app.delete("/favorites/:songId", (req, res) => {
   const songId = req.params.songId;
 
-  const index = favorites.indexOf(songId);
+  const index = favorites.findIndex(song => song.id === songId);
   if (index === -1) {
     return res.status(400).json({ error: "Song not found in favorites" });
   }
