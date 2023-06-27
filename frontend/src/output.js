@@ -193,7 +193,7 @@ function addSongToFavourites(song, favoriteButton) {
   
   let songToAddJSON = JSON.stringify(song);
 
-  xhr.open("PUT","localhost:3000/favorites")
+  xhr.open("POST","http://localhost:3000/favorites")
   xhr.setRequestHeader( "Content-Type", "application/json" );
   xhr.send(songToAddJSON);
 
@@ -214,7 +214,7 @@ function removeSongFromFavourites(song, favoriteButton) {
   }
 
   // TODO : Eventuell noch ändern.
-  xhr.open("DELETE", "localhost:3000/favorites/" + song.id);
+  xhr.open("DELETE", "http://localhost:3000/favorites/" + song.id);
   xhr.send()
 
 }

@@ -132,3 +132,4 @@ dist
 #IntelliJ IDEA
 .idea/
 nodejs-backend.iml
+TODO.txt

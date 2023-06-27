@@ -1,5 +1,7 @@
 const express = require("express");
 const session = require("express-session");
+const path = require("path");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const passport = require("../config/passport").passport;
@@ -10,7 +12,10 @@ const recommendationsRouter = require("../routes/recommendationsRouter").recomme
 const testRouter = require("../routes/testRouter").testRouter;
 
 const app = express();
+
 app.use(bodyParser.json());
+app.use(express.static(path.join(process.cwd(), "../frontend/src")));
+app.use(cors());
 
 app.use(
   session({
