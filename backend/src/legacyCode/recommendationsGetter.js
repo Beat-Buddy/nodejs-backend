@@ -1,5 +1,5 @@
 const axios = require("axios");
-let access_token = require("./access-token");
+let access_token = require("../data/accessToken");
 
 class RecommendationsGetter {
   #urlString = "https://api.spotify.com/v1/recommendations?";

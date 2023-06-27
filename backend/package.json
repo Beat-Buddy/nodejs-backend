@@ -16,7 +16,7 @@
     "npm": "^9.6.7"
   },
   "scripts": {
-    "start-nodemon": "nodemon server/server.js --ignore api/access-token.js"
+    "start-nodemon": "nodemon src/server/server.js --ignore api/accessToken.js"
   },
   "keywords": [],
   "author": "",

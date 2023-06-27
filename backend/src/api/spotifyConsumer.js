@@ -1,6 +1,6 @@
 const axios = require("axios");
 const fs = require("fs");
-let access_token = require("./access-token");
+let access_token = require("../data/accessToken");
 
 const SPOTIFY_API_URL = "https://api.spotify.com/v1";
 
@@ -31,7 +31,7 @@ function updateAccessToken() {
             expires: Date.now() + axiosResponse.data.expires_in * 1000 - 60000, //manually reducing expire time by one minute to create a buffer if last request before renewing takes a long time
           };
           fs.writeFile(
-            "api/access-token.js",
+            "src/data/accessToken.js",
             "module.exports=" + JSON.stringify(newAccessToken),
             (writeFileError) => {
               if (writeFileError) {

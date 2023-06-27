@@ -7,9 +7,9 @@ const LocalStrategy = require("passport-local");
 const bodyParser = require("body-parser");
 const app = express();
 
-const users = require("./users").users;
-const musixmatch = require("./../api/musixmatch-consumer");
-const spotify = require("./../api/spotify-consumer");
+const users = require("../data/users").users;
+const musixmatch = require("../api/musixmatchConsumer");
+const spotify = require("../api/spotifyConsumer");
 
 app.use(bodyParser.json());
 
@@ -116,6 +116,12 @@ app.get("/favorites", (req, res) => {
 // Root route
 app.get("/", checkNotAuthenticated, function (req, res) {
   res.send('This is the Node.js backend server of the "Beat Buddy" App.');
+  spotify.getRecommendations({
+    seed_artists: "4NHQUGzhtTLFvgF5SZesLK",
+    seed_genres: "classical",
+    limit: 2
+  });
+  musixmatch.getLyricsOfRequestedTrack("Rick Astley", "Never Gonna Give You Up");
 });
 
 //Test Route

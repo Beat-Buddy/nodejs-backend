@@ -22,6 +22,7 @@ function getTrackIdOfRequest(artist, title) {
       .get(urlString)
       .then((response) => {
         console.log("Track response received!");
+        console.log(response.data.message.body.track_list[0]);
         resolve(response.data.message.body.track_list[0].track.track_id);
       })
       .catch((axiosError) => {
