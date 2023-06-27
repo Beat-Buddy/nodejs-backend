@@ -11,7 +11,7 @@ favoritesRouter.post("/", (req, res) => {
 
   if (favorites.some(favorite => favorite.id === song.id)) {
     return res.status(400).json({ error: "Song already in favorites" });
-  }
+  } 
 
   favorites.push(song);
 
