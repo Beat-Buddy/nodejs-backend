@@ -10,7 +10,7 @@ ul {
 
 button{
     width: 5%;
-
+    margin-right: 0;
 }
 
 
@@ -39,6 +39,10 @@ button{
     flex-direction: row;
     height: 1rem;
     gap: 1rem;
+    margin-top: 1vw;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
 }
 
 .searchBarContainer{
@@ -50,16 +54,32 @@ button{
     text-align: center;
 }
 
+.seedSearchInput{
+    background: gray;
+    color: white;
+    border-radius: 1vw;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: "Quicksand", Verdana, sans-serif;
+}
+
 .searchBarResultContainer{
     display: flex;
     flex-direction: row;
     margin-top: 1%;
     margin-left: 1%;
     gap: 5%;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
 }
 .searchBarResultContainer:hover{
-    background-color: var(--blue-color);
     color: black;
+    background-color: var(--blue-color);
+    border-radius: 3vw;
 }
 
 .searchBarResultItemPictureTrack{
@@ -71,9 +91,7 @@ button{
     width: 3rem;
     border-radius: 50%;
 }
-.searchBarResultItemTitle{
-    text-decoration: underline;
-}
+
 
 .seedSearchUnorderedList{
     
@@ -93,12 +111,15 @@ button{
 }
 
 .labelForLists{
-    text-decoration: underline;
+    font-size: 1.5em;
+    color: var(--blue-color);
+    font-weight: bold;
 }
 
 .clearAllButton{
     background-color: gray;
     color: white;
+    width: 8%;
 }
 
 .searchButton{
@@ -106,6 +127,7 @@ button{
     width: 10%;
     font-size: 1.5rem;
 }
+
 
 /* Design for Sliders */
 .sliderActive{

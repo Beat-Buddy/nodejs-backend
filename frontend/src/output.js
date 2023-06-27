@@ -193,7 +193,7 @@ function addSongToFavourites(song, favoriteButton) {
   
   let songToAddJSON = JSON.stringify(song);
 
-  xhr.open("PUT","localhost:3000/favorites")
+  xhr.open("POST","localhost:3000/favorites")
   xhr.setRequestHeader( "Content-Type", "application/json" );
   xhr.send(songToAddJSON);
 
