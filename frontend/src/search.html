@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="search.js"></script>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="search.css" />
+
+</head>
+<body>
+    <form>
+
+        <div class="searchBarContainer">
+            <label for="seedSearchInput">Search</label>
+            <input type="text" id="seedSearchInput" required>
+
+            <ul id="seedSearchResults" class="seedSearchUnorderedList">
+                
+            </ul>
+        </div>
+            
+        <div class="formContainer">
+            <div class="formItem">
+                <label for="selectedTrackList" class="labelForLists">Titles</label>
+                <ul id="selectedTrackList">
+                </ul>
+            </div>
+            <div class="formItem">
+                <label for="selectedArtistList" class="labelForLists">Artists</label>
+                <ul id="selectedArtistList">
+                </ul>
+            </div>
+            <div class="formItem">
+                <label for="selectedGenreList" class="labelForLists">Genres</label>
+                <ul id="selectedGenreList">
+                </ul>
+            </div>
+        </div>
+
+        <div class="formContainer">
+            <div class="formItem">
+                <label for="PopularitySlider">Popularity</label>
+                <input type="range" class="sliderNotActive" min="0" max="100" value="50" id="PopularitySlider">
+            </div>
+            <div class="formItem">
+                <label for="DanceabilitySlider">Danceability</label>
+                <input type="range" class="sliderNotActive" min="0" max="1" value="0.5" step="0.01" id="DanceabilitySlider">
+            </div>
+            <div class="formItem">
+                <label for="EnergySlider">Energy</label>
+                <input type="range" class="sliderNotActive" min="0" max="1" value="0.5" step="0.01" id="EnergySlider">
+            </div>
+        </div>
+
+        <div class="formContainer">
+            <div class="formItem">
+                <label for="ValanceSlider">Valance</label>
+                <input type="range" class="sliderNotActive" min="0" max="1" value="0.5" step="0.01" id="ValanceSlider">
+            </div>
+            <div class="formItem">
+                <label for="InstrumentalSlider">Instrumental</label>
+                <input type="range" class="sliderNotActive" min="0" max="1" value="0.5" step="0.01" id="InstrumentalSlider">
+            </div>
+            <div class="formItem">
+                <label for="TempoSlider">Tempo</label>
+                <input type="range" class="sliderNotActive" min="60" max="200" value="130" step="1" id="TempoSlider">
+            </div>
+        </div>
+        
+        <div class="buttonContainer">
+            <button onclick="clearAll()" type="button" class="clearAllButton" >Clear all</button>
+            <button onclick="search()" type="button" class="searchButton">Search</button>
+        </div>
+                    
+    </form>
+</body>
+</html>

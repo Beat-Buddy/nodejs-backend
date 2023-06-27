@@ -1,0 +1,178 @@
+body{
+    color: #d3d3d3;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+button{
+    width: 5%;
+
+}
+
+
+.formContainer {
+    margin-top: 2%;
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    gap: 10%;
+}
+  
+.formItem {
+    /* Styles for the flex items */
+    flex: 1;
+    justify-content: space-evenly;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.selectedItemContainer{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 1rem;
+    gap: 1rem;
+}
+
+.searchBarContainer{
+    margin-top: 2%;
+    display: flex;
+    margin-left: 35%;
+    margin-right: 35%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.searchBarResultContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1%;
+    margin-left: 1%;
+    gap: 5%;
+}
+.searchBarResultContainer:hover{
+    background-color: var(--blue-color);
+    color: black;
+}
+
+.searchBarResultItemPictureTrack{
+    width: 3rem;
+}
+
+.searchBarResultItemPictureArtist,
+.searchBarResultItemPictureGenre{
+    width: 3rem;
+    border-radius: 50%;
+}
+.searchBarResultItemTitle{
+    text-decoration: underline;
+}
+
+.seedSearchUnorderedList{
+    
+    border: 1em;
+}
+
+
+.buttonContainer{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.labelForLists{
+    text-decoration: underline;
+}
+
+.clearAllButton{
+    background-color: gray;
+    color: white;
+}
+
+.searchButton{
+    margin-top: 1%;
+    width: 10%;
+    font-size: 1.5rem;
+}
+
+/* Design for Sliders */
+.sliderActive{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 1vw;
+    border-radius: 0.5vw;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.sliderNotActive{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 1vw;
+    border-radius: 0.5vw;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+  
+.sliderActive::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%; 
+    background: var(--blue-color);
+    cursor: pointer;
+}
+  
+.sliderActive::-moz-range-thumb {
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    background: var(--blue-color);
+    cursor: pointer;
+}
+
+.sliderNotActive::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%; 
+    background: #545454;
+    cursor: pointer;
+}
+
+.sliderNotActive::-moz-range-thumb {
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    background: #545454;
+    cursor: pointer;
+}
+
+.sliderNotActive::-webkit-slider-thumb:hover{
+    background: var(--blue-color);
+}
+  
+/* Hover for Slider-Labels */
+.sliderLabelWhenSliderIsActive:hover{
+    text-decoration: line-through;
+}
