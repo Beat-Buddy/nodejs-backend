@@ -130,5 +130,5 @@ dist
 .pnp.*
 
 #IntelliJ IDEA
-.idea
+.idea/
 nodejs-backend.iml
