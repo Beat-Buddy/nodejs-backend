@@ -6,7 +6,7 @@ const favoritesRouter = express.Router();
 let favorites = [];
 
 // Add a song to favorites
-favoritesRouter.put("/", (req, res) => {
+favoritesRouter.post("/", (req, res) => {
   const song = req.body;
 
   if (favorites.some(favorite => favorite.id === song.id)) {
