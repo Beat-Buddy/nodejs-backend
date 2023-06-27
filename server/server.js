@@ -1,13 +1,15 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const session = require("express-session");
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-var session = require("express-session");
 
+const bodyParser = require("body-parser");
 const app = express();
 
 const users = require("./users").users;
+const musixmatch = require("./../api/musixmatch-consumer");
+const spotify = require("./../api/spotify-consumer");
 
 app.use(bodyParser.json());
 
@@ -115,6 +117,8 @@ app.get("/favorites", (req, res) => {
 app.get("/", checkNotAuthenticated, function (req, res) {
   res.send('This is the Node.js backend server of the "Beat Buddy" App.');
 });
+
+//Test Route
 app.get("/profile", checkAuthenticated, function (req, res) {
   res.send("Hello and welcome to your profile, " + req.user.username + "!");
 });
