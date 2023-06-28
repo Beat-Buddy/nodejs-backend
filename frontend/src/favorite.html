@@ -20,9 +20,9 @@
     <aside class="sidebar">
       <img src="./logos/navigation-title.png" alt="Navigation">
       <ul>
-        <li><a href="search.html">Song Recommendations</a></li>
-        <li><a href="favorite.html">Your Favorites</a></li>
-        <li><a href="logout.html">Sign Out</a></li>
+        <li><a onclick="otherPageClicked('/search')">Song Recommendations</a></li>
+        <li><a onclick="otherPageClicked('/favorites')">Your Favorites</a></li>
+        <li><a onclick="logoutClicked('/auth/logout')">Sign Out</a></li>
       </ul>
     </aside>
   </div>
@@ -35,5 +35,6 @@
     </div>
   </footer>
   <script src="favorite.js"></script>
+  <script src="forwarding.js"></script>
 </body>
 </html>

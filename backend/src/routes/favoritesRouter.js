@@ -1,17 +1,19 @@
 const express = require("express");
 
+const authCheck = require("../util/authCheck");
+
 const favoritesRouter = express.Router();
 
 // Favorites list
 let favorites = [];
 
 // Add a song to favorites
-favoritesRouter.post("/", (req, res) => {
+favoritesRouter.post("/", authCheck.checkAuthenticated, (req, res) => {
   const song = req.body;
 
-  if (favorites.some(favorite => favorite.id === song.id)) {
+  if (favorites.some((favorite) => favorite.id === song.id)) {
     return res.status(400).json({ error: "Song already in favorites" });
-  } 
+  }
 
   favorites.push(song);
 
@@ -19,10 +21,10 @@ favoritesRouter.post("/", (req, res) => {
 });
 
 // Remove a song from favorites
-favoritesRouter.delete("/:songId", (req, res) => {
+favoritesRouter.delete("/:songId", authCheck.checkAuthenticated, (req, res) => {
   const songId = req.params.songId;
 
-  const index = favorites.findIndex(song => song.id === songId);
+  const index = favorites.findIndex((song) => song.id === songId);
   if (index === -1) {
     return res.status(400).json({ error: "Song not found in favorites" });
   }
@@ -33,10 +35,10 @@ favoritesRouter.delete("/:songId", (req, res) => {
 });
 
 // Get the favorites list
-favoritesRouter.get("/", (req, res) => {
+favoritesRouter.get("/", authCheck.checkAuthenticated, (req, res) => {
   res.status(200).json({ favorites });
 });
 
-module.exports={
-    favoritesRouter
-}
+module.exports = {
+  favoritesRouter,
+};

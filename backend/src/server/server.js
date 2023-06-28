@@ -6,9 +6,10 @@ const bodyParser = require("body-parser");
 
 const passport = require("../config/passport").passport;
 
+const homeRouter = require("../routes/homeRouter").homeRouter;
 const authRouter = require("../routes/authRouter").authRouter;
 const favoritesRouter = require("../routes/favoritesRouter").favoritesRouter;
-const recommendationsRouter = require("../routes/recommendationsRouter").recommendationsRouter;
+const recommendationsRouter =  require("../routes/recommendationsRouter").recommendationsRouter;
 const testRouter = require("../routes/testRouter").testRouter;
 
 const app = express();
@@ -27,11 +28,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/", homeRouter);
 app.use("/auth", authRouter);
 app.use("/favorites", favoritesRouter);
 app.use("/recommendations", recommendationsRouter);
-app.use("/", testRouter);
- 
+app.use("/test", testRouter);
+
 app.listen(3000, () => {
   console.log("The server is now listening on http://localhost:3000/");
 });
