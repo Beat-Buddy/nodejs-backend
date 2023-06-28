@@ -7,7 +7,7 @@
     <title>Document</title>
 
     <script src="search.js"></script>
-    <script src="forwarding.js"></script>
+    <script src="authentication.js"></script>
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="search.css" />
  
@@ -86,9 +86,9 @@
         <aside class="sidebar">
             <img src="./logos/navigation-title.png" alt="Navigation">
             <ul>
-            <li><a onclick="otherPageClicked('/search')">Song Recommendations</a></li>
-            <li><a onclick="otherPageClicked('/favorites')">Your Favorites</a></li>
-            <li><a onclick="logoutClicked('/search')">Sign Out</a></li>
+            <li><a href="/search">Song Recommendations</a></li>
+            <li><a href="/favorites">Your Favorites</a></li>
+            <li><a onclick="logoutClicked()">Sign Out</a></li>
             </ul>
         </aside>
     </div>

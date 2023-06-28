@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <script src="login.js"></script>
+    <script src="authentication.js"></script>
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="login.css" />
 
@@ -17,14 +17,14 @@
             <img src="./logos/beat-buddy-logo-full.png" alt="Beat Buddy Logo">
         </header>
         <div>
-            <label for="Username">Username</label>
-            <input type="text" id="Username" required>
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
         </div>
         <div>
-            <label for="Password">Password</label>
-            <input type="password" id="Password" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
         </div>
-        <button onclick="sendAuthenticationRequest()" type="submit">Save</button>
+        <button onclick="sendAuthenticationRequest()" type="button">Save</button>
 
     </form>
     <footer class="footer">
