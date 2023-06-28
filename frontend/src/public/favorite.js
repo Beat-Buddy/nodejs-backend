@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   let xhr = new XMLHttpRequest();
   xhr.onload = function () {
-    let favoriteSongs = JSON.parse(xhr.response).favorites;
+    let favoriteSongs = JSON.parse(xhr.response).userFilteredFavorites;
+    console.log(xhr.response);
+    console.log(JSON.parse(xhr.response));
+    console.log(JSON.parse(xhr.response).userFilteredFavorites);
 
     // displaying the first ten recommended songs
     const songList = document.getElementById("songList");
@@ -50,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const favoriteButton = document.createElement("button");
     favoriteButton.classList.add("favorite-button");
     favoriteButton.classList.add("active");
-    favoriteButton.innerHTML = '<img src="./icons/heart-icon.svg" alt="Like">';
+    favoriteButton.innerHTML =
+      '<img src="./icons/solid-heart-icon.svg" alt="Unlike">';
     favoriteButton.setAttribute("data-tooltip", "Unfavorite Song");
 
     const showLyricsButton = document.createElement("button");
@@ -80,32 +84,43 @@ document.addEventListener("DOMContentLoaded", function () {
       window.alert("Copied to clipboard!");
     });
 
-    const favoriteButtonIsActive = favoriteButton.classList.contains("active");
-
-    if (favoriteButtonIsActive) {
-      favoriteButton.innerHTML =
-        '<img src="./icons/solid-heart-icon.svg" alt="Unlike">';
-      favoriteButton.setAttribute("data-tooltip", "Unfavorite Song");
-      favoriteButton.classList.add("active");
-    }
-
     favoriteButton.addEventListener("click", function () {
       if (favoriteButton.classList.contains("active")) {
-        favoriteButton.innerHTML =
-          '<img src="./icons/heart-icon.svg" alt="Like">';
-        favoriteButton.setAttribute("data-tooltip", "Favorite Song");
-        favoriteButton.classList.remove("active");
-
         const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            favoriteButton.innerHTML =
+              '<img src="./icons/heart-icon.svg" alt="Like">';
+            favoriteButton.setAttribute("data-tooltip", "Favorite Song");
+            favoriteButton.classList.remove("active");
+            sendLyricsButton.disabled = true;
+            sendLyricsButton.style = "background-color: #777";
+          } else alert("You are not allowed to do this!");
+        };
         xhr.open("DELETE", "http://localhost:3000/userfavorites/" + song.id);
         xhr.send();
       } else {
-        favoriteButton.innerHTML =
-          '<img src="./icons/solid-heart-icon.svg" alt="Unlike">';
-        favoriteButton.setAttribute("data-tooltip", "Unfavorite Song");
-        favoriteButton.classList.add("active");
-
         const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            favoriteButton.innerHTML =
+              '<img src="./icons/solid-heart-icon.svg" alt="Unlike">';
+            favoriteButton.setAttribute("data-tooltip", "Unfavorite Song");
+            favoriteButton.classList.add("active");
+            sendLyricsButton.disabled = false;
+            sendLyricsButton.style = "background-color: #6C9DBB";
+            sendLyricsButton.addEventListener(
+              "mouseover",
+              () =>
+                (sendLyricsButton.style.backgroundColor =
+                  "var(--accentpink-color)")
+            );
+            sendLyricsButton.addEventListener(
+              "mouseout",
+              () => (sendLyricsButton.style.backgroundColor = "#6C9DBB")
+            );
+          } else alert("You are not allowed to do this!");
+        };
         xhr.open("POST", "http://localhost:3000/userfavorites");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify(song));
@@ -175,7 +190,9 @@ document.addEventListener("DOMContentLoaded", function () {
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 400) {
           console.log("Lyrics sent successfully");
+          song.lyrics = lyrics;
         } else {
+          alert("You are not allowed to change these lyrics!");
           console.error("Failed to send lyrics. Status: " + xhr.status);
         }
       };
