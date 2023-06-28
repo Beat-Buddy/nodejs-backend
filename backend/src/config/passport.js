@@ -11,11 +11,11 @@ passport.use(
       });
   
       if (user === null || user.password !== password) {
-        console.log("Incorrect username or password.");
+        console.log("Passport: Incorrect username or password.");
         return cb(null, false, { message: "Incorrect username or password." });
       }
   
-      console.log("Login succeeded!");
+      console.log("Passport: Login succeeded!");
       return cb(null, user);
     })
   );

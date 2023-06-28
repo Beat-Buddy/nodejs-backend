@@ -35,5 +35,5 @@ app.use("/recommendations", recommendationsRouter);
 app.use("/test", testRouter);
 
 app.listen(3000, () => {
-  console.log("The server is now listening on http://localhost:3000/");
+  console.log("Express: The server is now listening on http://localhost:3000/");
 });

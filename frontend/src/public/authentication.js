@@ -13,7 +13,8 @@ function sendAuthenticationRequest() {
     xhr.onload = function (res) {
       if (xhr.status >= 200 && xhr.status < 400) {
         url = res.target.responseURL;
-        if (url == "http://localhost:3000/login") console.log("Incorrect username or password.");
+        if (url == "http://localhost:3000/login")
+          window.alert("Incorrect username or password.");
         else window.location = url;
       } else {
         console.error("Error while logging in. Status: " + xhr.status);
@@ -24,7 +25,7 @@ function sendAuthenticationRequest() {
     };
     xhr.send();
   } else {
-    console.log("Username and password invalid.");
+    window.alert("Username and password invalid.");
   }
 }
 
@@ -33,7 +34,7 @@ function logoutClicked() {
   xhr.open("POST", "/auth/logout", true);
   xhr.onload = function (res) {
     if (xhr.status >= 200 && xhr.status < 400) {
-      window.location ="/logout";
+      window.location = "/logout";
     } else {
       console.error("Error while forwarding. Status: " + xhr.status);
     }
@@ -43,3 +44,7 @@ function logoutClicked() {
   };
   xhr.send();
 }
+
+document.onkeydown = (e) => {
+  if (e.key == 'Enter') document.querySelector("button").click();
+};
