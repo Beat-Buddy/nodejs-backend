@@ -35,23 +35,23 @@ function updateAccessToken() {
             "module.exports=" + JSON.stringify(newAccessToken),
             (writeFileError) => {
               if (writeFileError) {
-                console.log("Error saving access token!");
+                console.log("Spotify: Error saving access token!");
                 throw writeFileError;
               } else {
                 access_token = newAccessToken; //Save access token also in runtime variable so it can be used without restarting
-                console.log("Access token saved");
+                console.log("Spotify: Access token saved");
                 resolve();
               }
             }
           );
         })
         .catch((axiosError) => {
-          console.log("Error updating access token!");
+          console.log("Spotify: Error updating access token!");
           throw axiosError;
         });
     });
   } else {
-    console.log("Current access token is not expired yet and is still usable.");
+    console.log("Spotify: Current access token is not expired yet and is still usable.");
   }
 }
 
@@ -70,21 +70,21 @@ async function getRecommendations(jsonData) {
   urlString = urlString.replace(/ /g, "+");
   console.log(urlString);
   
-  await axios
+  return new Promise((resolve)=>{
+  axios
     .get(urlString, {
       headers: {
         Authorization: "Bearer " + access_token.access_token,
       },
     })
     .then((axiosResponse) => {
-      console.log("Your recommendations:");
-      console.log(axiosResponse.data);
-      return axiosResponse.data;
+      resolve(axiosResponse.data);
     })
     .catch((axiosError) => {
-      console.log("Error with getting recommendations!");
+      console.log("Spotify: Error with getting recommendations!");
       throw axiosError;
     });
+  });
 }
 
 module.exports = {

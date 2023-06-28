@@ -25,4 +25,8 @@ homeRouter.get("/logout", (req, res) => {
   res.sendFile(path.join(process.cwd(), feUrl, "logout.html"));
 });
 
+homeRouter.get("/output", authCheck.checkAuthenticated, (req, res) => {
+  res.sendFile(path.join(process.cwd(), feUrl, "output.html"));
+});
+
 module.exports = { homeRouter };

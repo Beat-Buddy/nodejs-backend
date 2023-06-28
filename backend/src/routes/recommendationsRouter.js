@@ -6,13 +6,14 @@ const authCheck = require("../util/authCheck");
 
 const recommendationsRouter = express.Router();
 
-// GET-Endpoint to retrieve search-parameters from FE
-recommendationsRouter.get("/", authCheck.checkAuthenticated, (req, res) => {
-  const { searchParameter1, searchParameter2, searchParameter3 } = req.query;
-
-  // Code to process the search parameters
-
-  res.status(200).json({ message: "Search completed" });
+// POST-Endpoint to retrieve search-parameters from FE
+recommendationsRouter.post("/", authCheck.checkAuthenticated, async (req, res) => {
+  let values = req.body;
+  console.log("Recommendations:");
+  console.log(values);
+  
+  let recommendations = await spotify.getRecommendations(values);
+  res.status(200).json(recommendations);
 });
 
 module.exports = {
