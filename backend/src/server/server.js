@@ -15,7 +15,7 @@ const testRouter = require("../routes/testRouter").testRouter;
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(process.cwd(), "../frontend/src")));
+app.use(express.static(path.join(process.cwd(), "../frontend/src/public")));
 app.use(cors());
 
 app.use(
