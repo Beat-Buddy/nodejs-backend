@@ -21,8 +21,16 @@ function getTrackIdOfRequest(artist, title) {
     axios
       .get(urlString)
       .then((response) => {
-        console.log("Musixmatch: Track response received!");
-        resolve(response.data.message.body.track_list[0].track.track_id);
+        if (
+          response.data.message.header.available !== 0 &&
+          response.data.message.header.status_code === 200
+        ) {
+          console.log("Musixmatch: Track response received!");
+          resolve(response.data.message.body.track_list[0].track.track_id);
+        } else {
+          console.log("Musixmatch: No Track found!");
+          resolve(404);
+        }
       })
       .catch((axiosError) => {
         console.log("Musixmatch: Error with getting song lyrics!");
@@ -39,8 +47,13 @@ function getLyricsOfTrack(track_Id) {
     axios
       .get(lyricsUrlString)
       .then((response) => {
-        console.log("Musixmatch: Lyrics response received!");
-        resolve(response.data.message.body.lyrics.lyrics_body);
+        if (response.data.message.header.status_code === 200) {
+          console.log("Musixmatch: Lyrics response received!");
+          resolve(response.data.message.body.lyrics.lyrics_body);
+        } else {
+          console.log("Musixmatch: There are no lyrics!");
+          resolve(404);
+        }
       })
       .catch((axiosError) => {
         console.log("Musixmatch: Error with getting song lyrics!");
@@ -51,9 +64,12 @@ function getLyricsOfTrack(track_Id) {
 
 async function getLyricsOfRequestedTrack(artist, title) {
   let track_Id = await getTrackIdOfRequest(artist, title);
+  if (track_Id === 404) return "No Lyrics are available.";
   console.log("Musixmatch: Track ID: " + track_Id);
 
   let lyrics = await getLyricsOfTrack(track_Id);
+  if (lyrics === 404) return "No Lyrics are available.";
+
   let endIndex = lyrics.search("\n" + "...\n" + "\n");
   lyrics = lyrics.substring(0, endIndex - 1) + "...";
   return lyrics;

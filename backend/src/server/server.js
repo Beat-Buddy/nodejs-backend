@@ -30,7 +30,7 @@ app.use(passport.session());
 
 app.use("/", homeRouter);
 app.use("/auth", authRouter);
-app.use("/favorites", favoritesRouter);
+app.use("/userfavorites", favoritesRouter);
 app.use("/recommendations", recommendationsRouter);
 app.use("/test", testRouter);
 

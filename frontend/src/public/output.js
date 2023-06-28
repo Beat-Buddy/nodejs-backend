@@ -117,7 +117,7 @@ function createSongElement(song) {
 }
 
 function addSongToFavourites(song, favoriteButton) {
-  console.log("Folgender Song zu den Recommendations hinzugefügt.");
+  console.log("Folgender Song zu den Favoriten hinzugefügt.");
   console.log(song);
 
   const xhr = new XMLHttpRequest();
@@ -133,13 +133,13 @@ function addSongToFavourites(song, favoriteButton) {
 
   let songToAddJSON = JSON.stringify(song);
 
-  xhr.open("POST", "http://localhost:3000/favorites");
+  xhr.open("POST", "http://localhost:3000/userfavorites");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(songToAddJSON);
 }
 
 function removeSongFromFavourites(song, favoriteButton) {
-  console.log("Folgender Song wird von den Recommendations entfernt.");
+  console.log("Folgender Song wird von den Favoriten entfernt.");
   console.log(song);
 
   const xhr = new XMLHttpRequest();
@@ -154,7 +154,7 @@ function removeSongFromFavourites(song, favoriteButton) {
   };
 
   // TODO : Eventuell noch ändern.
-  xhr.open("DELETE", "http://localhost:3000/favorites/" + song.id);
+  xhr.open("DELETE", "http://localhost:3000/userfavorites/" + song.id);
   xhr.send();
 }
 

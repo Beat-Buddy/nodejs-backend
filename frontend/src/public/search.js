@@ -255,7 +255,7 @@ function addToSelectedSeed(seedId, seedName, seedType) {
   //let selectedSearchbarContainer = document.getElementById(seedId);
   //console.log(selectedSearchbarContainer.querySelectorAll("p"));
   if (nOfSelectedSeeds >= 5) {
-    console.log("Es wurde schon die maximale Anzahl an Seeds hinzugefügt!");
+    alert("Es wurde schon die maximale Anzahl an Seeds hinzugefügt!");
     return;
     // TODO : PopUp für den User implementieren.
   }
