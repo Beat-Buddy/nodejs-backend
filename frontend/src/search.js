@@ -283,7 +283,9 @@ function addToSelectedSeed(seedId,seedName,seedType){
     selectedItemContainer.setAttribute("class","selectedItemContainer");
 
     let selectedItemTitle = document.createElement("p");
-    selectedItemTitle.innerText = seedName;
+    selectedItemTitle.innerText = seedName.substring(0,17);
+    if(selectedItemTitle.innerText.length == 17) 
+        selectedItemTitle.innerText = selectedItemTitle.innerText + "...";
     selectedItemContainer.append(selectedItemTitle);            
 
     // Id setzen :
@@ -297,10 +299,6 @@ function addToSelectedSeed(seedId,seedName,seedType){
         selectedItemContainer.append(selectedItemIdHidden);
     */
 
-    let deleteButtonForSelectedItem = document.createElement("button");
-    deleteButtonForSelectedItem.innerText = "x";
-    selectedItemContainer.append(deleteButtonForSelectedItem);
-
     // Unterscheidung zwischen Track und Artist machen.
     if(seedType === "track"){
         console.log("Es wurde ein Song "+ seedName +" mit der ID : + " + seedId + "hinzugefügt.");
@@ -308,7 +306,7 @@ function addToSelectedSeed(seedId,seedName,seedType){
         console.log(seedId)
         selectedTrackSeeds.push(seedId);
 
-        deleteButtonForSelectedItem.addEventListener("click",function(){
+        selectedItemContainer.addEventListener("click",function(){
             selectedItemContainer.remove();
 
             const index = selectedTrackSeeds.indexOf(seedId);
@@ -327,7 +325,7 @@ function addToSelectedSeed(seedId,seedName,seedType){
         console.log("Es wurde ein Artist " + seedName + " mit der ID : + " + seedId + "hinzugefügt.");
         selectedArtistSeeds.push(seedId);
 
-        deleteButtonForSelectedItem.addEventListener("click",function(){
+        selectedItemContainer.addEventListener("click",function(){
             selectedItemContainer.remove();
 
             const index = selectedArtistSeeds.indexOf(seedId);
@@ -344,7 +342,7 @@ function addToSelectedSeed(seedId,seedName,seedType){
         listOfSelectedArtists.append(selectedItemContainer);
     } else {
         selectedGenreSeeds.push(seedId);
-        deleteButtonForSelectedItem.addEventListener("click",function(){
+        selectedItemContainer.addEventListener("click",function(){
             selectedItemContainer.remove();
 
             const index = selectedGenreSeeds.indexOf(seedId);
